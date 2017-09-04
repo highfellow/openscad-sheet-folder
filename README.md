@@ -9,7 +9,7 @@ Usage:
 - You also define fold lines which will be used to fold the sheet.
 - A global special variable, `$fold` defines whether to fold the sheet or not. If this is set to 'fold', the folds will be carried out and the sheets made to the desired thickness. If it is set to 'debug', the design will be left as 2D and different coloured regions added to the model to show the boundaries of the folds. If it is set to 'output', the design will be returned unmodified for output to a laser cutter or other CNC device. 
 - A fold line has a start point, end point, an angle to fold by, and a width to fold over. 
-- The region to fold over is found by moving from the start point to the centre of the fold, turning right by 90 degrees, displacing the fold line along the normal by the fold width, and creating a rectangle from the two lines. This region must be rectangular in the 2D design or the module won't work.
+- The region to fold over is found by moving from the start point to the centre of the fold, turning left by 90 degrees, displacing the fold line along the normal by the fold width, and creating a rectangle from the two lines. This region must be rectangular in the 2D design or the module won't work.
 - After folding, the region of the sheet to the 'right' of the fold line looking from the start point to the end is left where it is, the region of folding is replaced with an angular section of a hollow cylinder with the same wall thickness as the sheet and the region to the 'left' of the fold line is translated and rotated to its new location *along* *with* all the fold lines that apply to the folded region.
 - This process is repeated recursively for each of the fold lines.
 - The pieces created like this are put together using Boolean unions.
