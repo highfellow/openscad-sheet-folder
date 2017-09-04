@@ -9,6 +9,7 @@ Usage:
 - A global special variable, `$fold` defines whether to fold the sheet or not. If this is true, the fold will be carried out and the sheets made to the desired thickness. If it is false, the design will be left as 2D.
 - You also define fold lines which will be used to fold the sheet. (not sure how yet - maybe as a series of operators on the original sheet)
 - A fold line has a start point, end point, an angle to fold by, and a width to fold over. 
+- The first thing that is done to each fold line is to shorten it if necessary by intersecting it with the 2D sheet.
 - The region to fold over is found by moving from the start point to the centre of the fold, turning right by 90 degrees, displacing the fold line along the normal by the fold width, and creating a rectangle from the two lines. This region must be rectangular in the 2D design or the module won't work.
 - After folding, the region of the sheet to the 'left' of the fold line looking from the start point to the end is left where it is, the region of folding is replaced with an angular section of a hollow cylinder with the same wall thickness as the sheet and the region to the 'right' of the fold line is translated and rotated to its new location *along* with all the fold lines that apply to the folded region.
 - This process is repeated recursively for each of the fold lines.
