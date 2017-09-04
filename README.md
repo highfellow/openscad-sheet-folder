@@ -20,4 +20,6 @@ Design:
 - a tree-like data structure is probably right for specifying the fold lines. Maybe a vector containing other vectors? 
 - it would be nice to be able to create this using named operators applied to the 2D sheet, but I am not sure yet how this could work in OpenSCAD. A vector of vectors would work but is not that readable.
 - can modules operate on a data structure as well as a geometric object?
+- maybe you could generate the vector of vectors specifying the cuts through a set of nested calls to a custom function. The function would take parameters of cut line, angle, width, and a vector of child cuts, which would be created through calls to the same function.
+- actually cutting a 2D object along a line seems to be an issue in itself. Have raised an OpenSCAD issue about this.
 - the sheet needs to be extruded to 3D *after* the folds have all been done. I.e. you start with the 2D sheet, then apply all the folds in succession, and then extrude the sheets and add the bent sections.
