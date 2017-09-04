@@ -16,10 +16,7 @@ Usage:
 - A `$delta` variable defines how much overlap there is between objects so the booleans work properly.
 
 Design:
-- a tree-like data structure is probably right for specifying the fold lines, so your canew havemail folder regoons wit folds inside. Maybe a vector containing other vectors? 
-- it would be nice to be able to create this using named operators applied to the 2D sheet, but I am not sure yet how this could work in OpenSCAD. A vector of vectors would work but is not that readable.
-- can modules operate on a data structure as well as a geometric object?
-- maybe you could generate the vector of vectors specifying the cuts through a set of nested calls to a custom function. The function would take parameters of cut line, angle, width, and a vector of child cuts, which would be created through calls to the same function.
+- a tree-like data structure is probably right for specifying the fold lines, so you can have folded regions with sub-folds in them. Maybe a vector containing other vectors? This would not be that readable though.
+- maybe you could generate the vector of vectors specifying the cuts through a set of nested calls to a custom function. The function would take parameters of cut line, angle, width, and a vector of child cuts, which would be created through calls to the same function. The top level function would return the fold tree vector as its result.
 - actually cutting a 2D object along a line seems to be an issue in itself. Have asked on the OpenSCAD forum about this.
-- the sheet needs to be extruded to 3D *after* the folds have all been done. I.e. you start with the 2D sheet, then apply all the folds in succession, and then extrude the sheets and add the bent sections.
-- it might be possible to do the actual cutting and bending using a custom module that takes the fold tree as one parameter, the sheet thickness as another, and the unfolded 2D model as its first child. This could call itself recursively to do the cutting and bending?
+- it might be possible to do the actual cutting and bending using a custom module that takes the fold tree as one parameter, the sheet thickness as another, and the unfolded 2D model as its first child. This could call itself recursively to do the cutting and bending? Each stage of the recursion would return an object as its only child which contained a part with all the folds at that level of the tree applied. At a given level there might be several folds, each of which would return a folded sub-sheet. These sub-sheets would then be used by the higher level instance of the module to make the next level up and so on.
